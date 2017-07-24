@@ -54,14 +54,14 @@ public class GameLogicCenterServiceImpl implements GameLogicCenterService {
 	@Autowired
 	private PlayerGameResultRepository playerGameResultRepository;
 
-	@Autowired
-	private JmsTemplate jmsTemplate;
-
-	@Autowired
-	private Queue queue;
-
-	@Autowired
-	private Topic topic;
+//	@Autowired
+//	private JmsTemplate jmsTemplate;
+//
+//	@Autowired
+//	private Queue queue;
+//
+//	@Autowired
+//	private Topic topic;
 
 	// ------------------
 

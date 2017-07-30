@@ -1,6 +1,8 @@
 package cn.game.api.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -12,10 +14,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.game.api.config.Config.Values;
 import cn.game.api.controller.req.BaseRequest;
 import cn.game.api.controller.req.login.WXLoginReq;
 import cn.game.api.controller.resp.BaseResponse;
 import cn.game.api.service.login.GameLoginService;
+import cn.game.api.service.task.TaskService;
+import cn.game.api.service.user.GameUserService;
+import cn.game.core.entity.table.play.GameFriends;
 import cn.game.core.entity.table.play.Player;
 import cn.game.core.entity.table.play.PlayerAccount;
 import cn.game.core.service.vo.PlayerVo;
@@ -25,7 +32,13 @@ public class GameLoginController {
 	private static Logger logger = Logger.getLogger(GameLoginController.class);
 	@Autowired
 	private GameLoginService gameLoginService;
-
+	@Autowired
+	private TaskService taskService;
+	
+	@Autowired
+	private GameUserService gameUserService;
+	@Autowired
+	 private   Values values;
 	/**
 	 * 用于微信用户登录
 	 * 
@@ -49,6 +62,7 @@ public class GameLoginController {
 			account.setTotalGold(200l);
 			player.setAccout(account);
 			player.setAuthCode(req.getData().getAuthCode());
+			//邀请码
 			player.setInvitationNum(req.getData().getInvitationNum() == null ? "" : req.getData().getInvitationNum());
 			player.setWxAccessToken(req.getData().getWxAccessToken());
 			player.setWxDynamicToken(req.getData().getWxDynamicToken());
@@ -59,7 +73,18 @@ public class GameLoginController {
 			player.setWxUnionid(req.getData().getWxUnionid());
 			player.setIsLock(false);
 			player.setCreateTime(new Date());
-
+			String platformId=taskService.playerPlatformId();
+			player.setUserPlatformId(platformId);
+			//10000为固定客服号
+			if(!Long.valueOf(platformId).equals(values.getGameServiceNumber())){
+				List<GameFriends>list=new ArrayList<>();
+				GameFriends friend=new GameFriends();
+				friend.setPlayer(gameUserService.loadGameServiceNumber());
+				list.add(friend);
+				player.setFridends(list);
+			}
+		
+			
 			player = gameLoginService.saveWxUser(player);
 			PlayerVo vo = PlayerVo.playerToVo(player);
 			return BaseResponse.success(vo);

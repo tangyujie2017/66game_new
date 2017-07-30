@@ -2,13 +2,18 @@ package cn.game.core.entity.table.play;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -58,6 +63,22 @@ public class Player implements Serializable {
 	
 	@Column(name = "date_time")
 	private  Date createTime;
+	
+	@Column(name = "user_platform_id")
+	private String  userPlatformId;
+	
+	//游戏结果详情
+	@ManyToMany(fetch = FetchType.LAZY ,cascade=CascadeType.ALL )
+	@JoinTable(name = "player_friend")
+	private List<GameFriends> fridends;
+	public String getUserPlatformId() {
+		return userPlatformId;
+	}
+
+	public void setUserPlatformId(String userPlatformId) {
+		this.userPlatformId = userPlatformId;
+	}
+
 	public Boolean getIsLock() {
 		return isLock;
 	}
@@ -163,6 +184,23 @@ public class Player implements Serializable {
 
 	public void setAccout(PlayerAccount accout) {
 		this.accout = accout;
+	}
+
+	public Player(Long userId) {
+		super();
+		this.userId = userId;
+	}
+
+	public Player() {
+		super();
+	}
+
+	public List<GameFriends> getFridends() {
+		return fridends;
+	}
+
+	public void setFridends(List<GameFriends> fridends) {
+		this.fridends = fridends;
 	}	
 	
 	

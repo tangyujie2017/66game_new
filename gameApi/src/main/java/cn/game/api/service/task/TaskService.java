@@ -1,6 +1,7 @@
 package cn.game.api.service.task;
 
 public interface TaskService {
-	public void generateBatchNo();
+	//public void generateBatchNo();
+	public  String playerPlatformId();
 
 }

@@ -38,6 +38,8 @@ public class PlayerVo {
 	private PlayerAccountVo accout;
 
 	private Date createTime;
+	
+	private String userPlatformId;
 
 	public Boolean getIsLock() {
 		return isLock;
@@ -143,6 +145,14 @@ public class PlayerVo {
 		this.accout = accout;
 	}
 
+	public String getUserPlatformId() {
+		return userPlatformId;
+	}
+
+	public void setUserPlatformId(String userPlatformId) {
+		this.userPlatformId = userPlatformId;
+	}
+
 	public static PlayerVo playerToVo(Player player) {
 		PlayerVo vo = new PlayerVo();
 		vo.setAuthCode(player.getAuthCode());
@@ -158,6 +168,7 @@ public class PlayerVo {
 		vo.setWxNickname(player.getWxNickname());
 		vo.setWxOpenId(player.getWxOpenId());
 		vo.setWxUnionid(player.getWxUnionid());
+		vo.setUserPlatformId(player.getUserPlatformId());
 		PlayerAccountVo accountVo = new PlayerAccountVo();
 		accountVo.setAccout_id(player.getAccout().getAccout_id());
 		accountVo.setHistoryPayRecord(player.getAccout().getHistoryPayRecord());

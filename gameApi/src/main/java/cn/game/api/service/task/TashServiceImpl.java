@@ -27,7 +27,6 @@ public class TashServiceImpl implements TaskService {
 	
 	@Scheduled(fixedRate = 20000)
 	private void generateBatchNo() {
-		System.out.println("我正在生成批次号");
 		String current_batch = redisRepository.getString("current_batch");
 		//执行上一次的结果
 		if (current_batch != null && !current_batch.equals("")) {

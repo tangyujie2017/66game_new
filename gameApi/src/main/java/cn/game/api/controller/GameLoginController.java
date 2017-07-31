@@ -59,7 +59,7 @@ public class GameLoginController {
 			PlayerAccount account = new PlayerAccount();
 			account.setHistoryPayRecord(0l);
 			account.setPlayer(player);
-			account.setTotalGold(200l);
+			account.setTotalGold(values.getGameSysSendScore());
 			player.setAccout(account);
 			player.setAuthCode(req.getData().getAuthCode());
 			//邀请码

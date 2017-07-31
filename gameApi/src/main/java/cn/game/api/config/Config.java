@@ -10,13 +10,14 @@ public class Config {
 
   public interface Values {
     Long getGameServiceNumber();
-
+    Long getGameSysSendScore();
   
   }
 
   @Value("${game.service.number}")
   private Long gameServiceNumber;
-
+  @Value("${game.system.sendscore}")
+  private Long gameSysSendScore;
  
   @Bean(name = "values")
   public Values values() {
@@ -26,6 +27,12 @@ public class Config {
 		public Long getGameServiceNumber() {
 		
 			return gameServiceNumber;
+		}
+
+		@Override
+		public Long getGameSysSendScore() {
+			
+			return gameSysSendScore;
 		}
     
 	

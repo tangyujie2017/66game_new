@@ -1,4 +1,4 @@
-package cn.game.core.repository.system.custom;
+package cn.game.core.repository.user;
 
 
 

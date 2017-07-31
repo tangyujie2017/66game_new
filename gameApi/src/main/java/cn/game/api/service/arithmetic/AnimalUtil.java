@@ -2,23 +2,20 @@ package cn.game.api.service.arithmetic;
 
 import java.util.*;
 
-import javax.persistence.Column;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import cn.game.api.GameApiApplication;
 import cn.game.api.exception.BizException;
 import cn.game.api.service.logic.GameLogicCenterService;
 import cn.game.core.entity.table.play.BaseAnimal;
-import cn.game.core.entity.table.play.GameAnimal;
 import cn.game.core.entity.table.play.Player;
-import cn.game.core.entity.table.play.PlayerGame;
 import cn.game.core.entity.table.play.PlayerGameResult;
 import cn.game.core.entity.table.play.ResultAnimal;
 import cn.game.core.entity.table.play.UserGameResult;
 
 public class AnimalUtil {
-	private static Logger logger = Logger.getLogger(AnimalUtil.class);
+	private static Logger logger = LogManager.getLogger(AnimalUtil.class);
 
 
 	

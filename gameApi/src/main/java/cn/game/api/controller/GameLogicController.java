@@ -2,7 +2,8 @@ package cn.game.api.controller;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,19 +21,18 @@ import cn.game.api.controller.resp.logic.GameResultResp;
 import cn.game.api.service.arithmetic.Animal;
 import cn.game.api.service.logic.GameLogicCenterService;
 import cn.game.api.util.GameApiUtils;
-import cn.game.core.entity.table.play.UserGameResult;
-import cn.game.core.service.vo.UserGameResultVo;
 
 @Controller
 public class GameLogicController {
-	private static Logger logger = Logger.getLogger(GameLoginController.class);
+	private static Logger logger = LogManager.getLogger(GameLogicController.class);
+
 	@Autowired
 	private GameLogicCenterService gameLogicCenterService;
 
 	@PostMapping(value = "/api/v1/logic/play")
 	@ResponseBody
 	public ResponseEntity<BaseResponse> playGame(@RequestBody BaseRequest<PlayReq> req) {
-		logger.debug("用户押积分");
+		//logger.debug("用户押积分");
 		if (req.getData().getUserId() != null && req.getData().getAnimaList() != null
 				&& !"".equals(req.getData().getAnimaList())) {
 			try {
@@ -43,7 +43,7 @@ public class GameLogicController {
 			} catch (Exception e) {
 
 				e.printStackTrace();
-				logger.error("玩家加入游戏出错id=" + req.getData().getUserId() + e.getMessage());
+				//logger.error("玩家加入游戏出错id=" + req.getData().getUserId() + e.getMessage());
 				return BaseResponse.business(e.getMessage());
 			}
 

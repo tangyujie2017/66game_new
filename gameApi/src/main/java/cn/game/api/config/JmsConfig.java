@@ -1,16 +1,5 @@
 package cn.game.api.config;
 
-import javax.jms.ConnectionFactory;
-
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.jms.annotation.EnableJms;
-import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
-import org.springframework.jms.config.JmsListenerContainerFactory;
-import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
-import org.springframework.jms.support.converter.MessageConverter;
-import org.springframework.jms.support.converter.MessageType;
 
 // 参考http://www.jianshu.com/p/d8d73c872665
 //http://elim.iteye.com/blog/1900937

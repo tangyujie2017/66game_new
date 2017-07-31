@@ -1,9 +1,7 @@
 package cn.game.api.controller.req.logic;
 
 import java.io.Serializable;
-import java.util.List;
 
-import cn.game.api.service.arithmetic.Animal;
 
 public class PlayReq implements Serializable {
 	

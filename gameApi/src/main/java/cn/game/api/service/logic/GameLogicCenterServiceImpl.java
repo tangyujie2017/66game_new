@@ -8,22 +8,20 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import javax.jms.Queue;
-import javax.jms.Topic;
 import javax.transaction.Transactional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import cn.game.api.controller.resp.logic.GameResultResp;
 import cn.game.api.exception.BizException;
 import cn.game.api.service.arithmetic.Animal;
 import cn.game.api.service.arithmetic.AnimalConstant;
+import cn.game.api.service.arithmetic.AnimalUtil;
 import cn.game.api.service.arithmetic.TypeOfAnimal;
 import cn.game.api.service.arithmetic.UserAnimal;
-import cn.game.api.service.mq.Email;
 import cn.game.core.entity.table.play.BaseAnimal;
 import cn.game.core.entity.table.play.GameAnimal;
 import cn.game.core.entity.table.play.Player;
@@ -42,7 +40,7 @@ import cn.game.core.service.vo.UserGameResultVo;
 
 @Service
 public class GameLogicCenterServiceImpl implements GameLogicCenterService {
-	private static Logger logger = Logger.getLogger(GameLogicCenterServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(AnimalUtil.class);
 	@Autowired
 	private RedisRepository redisRepository;
 	@Autowired
@@ -54,16 +52,7 @@ public class GameLogicCenterServiceImpl implements GameLogicCenterService {
 	@Autowired
 	private PlayerGameResultRepository playerGameResultRepository;
 
-//	@Autowired
-//	private JmsTemplate jmsTemplate;
-//
-//	@Autowired
-//	private Queue queue;
-//
-//	@Autowired
-//	private Topic topic;
 
-	// ------------------
 
 	private void initBatch(String batch) {
 		// 初始化批次号

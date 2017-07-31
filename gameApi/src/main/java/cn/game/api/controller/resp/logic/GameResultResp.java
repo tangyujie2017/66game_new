@@ -2,7 +2,6 @@ package cn.game.api.controller.resp.logic;
 
 import java.util.List;
 
-import cn.game.core.entity.table.play.UserGameResult;
 import cn.game.core.service.vo.GameResultVo;
 import cn.game.core.service.vo.UserGameResultVo;
 

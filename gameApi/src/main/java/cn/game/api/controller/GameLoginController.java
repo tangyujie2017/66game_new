@@ -6,7 +6,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ import cn.game.core.service.vo.PlayerVo;
 
 @Controller
 public class GameLoginController {
-	private static Logger logger = Logger.getLogger(GameLoginController.class);
+	private static Logger logger = LogManager.getLogger(GameLoginController.class);
 	@Autowired
 	private GameLoginService gameLoginService;
 	@Autowired
@@ -38,7 +39,7 @@ public class GameLoginController {
 	@Autowired
 	private GameUserService gameUserService;
 	@Autowired
-	 private   Values values;
+    private   Values values;
 	/**
 	 * 用于微信用户登录
 	 * 

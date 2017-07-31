@@ -1,4 +1,4 @@
-package cn.game.admin;
+package cn.game.admin.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -24,7 +24,7 @@ public class GameUserServiceImpl implements GameUserService{
 	@Override
 	public Player loadGameServiceNumber() {
 		Long service=values.getGameServiceNumber();
-		Player servicePlayer= playerRepository.findUniqueBy("userPlatformId", service);
+		Player servicePlayer= playerRepository.findUniqueBy("userPlatformId", String.valueOf(service));
 		return servicePlayer;
 	}
 

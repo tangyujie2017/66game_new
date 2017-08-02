@@ -5,9 +5,9 @@ import java.util.List;
 import cn.game.core.entity.table.wallet.PlayerRecharge;
 
 public interface AdminRechargeService {
-	public void manageApiRecharge(Long rechargeId);
+	public void manageApiRecharge(Long rechargeId,Integer status);
 
-	public void manageAdminRecharge(PlayerRecharge recharge);
+	public void manageAdminRecharge(PlayerRecharge recharge,String userPlatformId);
 
 	public List<PlayerRecharge> loadPlayerRechargeList();
 }

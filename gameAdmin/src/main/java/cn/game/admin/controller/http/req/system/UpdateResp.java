@@ -1,11 +1,12 @@
-package cn.game.admin.controller.http.req;
+package cn.game.admin.controller.http.req.system;
 
 
-public class UpdateReq<U> {
+public class UpdateResp<U> extends Resp {
 
   private U details;
 
-  public UpdateReq(U details) {
+  public UpdateResp(int status, U details) {
+    super(status);
     this.details = details;
   }
 

@@ -1,4 +1,4 @@
-package cn.game.admin.controller.http.req;
+package cn.game.admin.controller.http.req.system;
 
 
 public class DeleteReq<T> {

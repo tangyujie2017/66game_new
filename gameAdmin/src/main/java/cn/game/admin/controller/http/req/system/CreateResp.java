@@ -1,11 +1,12 @@
-package cn.game.admin.controller.http.req;
+package cn.game.admin.controller.http.req.system;
 
 
-public class UpdateResp<U> extends Resp {
+
+public class CreateResp<U> extends Resp {
 
   private U details;
 
-  public UpdateResp(int status, U details) {
+  public CreateResp(int status, U details) {
     super(status);
     this.details = details;
   }
@@ -17,5 +18,4 @@ public class UpdateResp<U> extends Resp {
   public void setDetails(U details) {
     this.details = details;
   }
-
 }

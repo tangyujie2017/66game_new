@@ -37,14 +37,21 @@ public class SecurityConfig {
 	}
 
 	@Configuration
-	@Order(2)
+	@Order(1)
 	public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-		@Override
-		public void configure(WebSecurity web) throws Exception {
-			web.ignoring().antMatchers("/resources/**", "/webjars/**", "/js/**", "/images/**", "/css/**",
-					"/h2-console/*", "/assets/*");
-		}
+		 @Override
+		    public void configure(WebSecurity web) throws Exception {
+		      web.ignoring().antMatchers(
+		          "/resources/**",
+		          "/webjars/**",
+		          "/js/**",
+		          "/images/**",
+		          "/css/**",
+		          "/h2-console/*",
+		          "/assets/*"
+		      );
+		    }
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {

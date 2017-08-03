@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-@Entity(name = "player_agency")
+@Entity
 public class PlayerAgency implements Serializable{
 
 	
@@ -28,6 +28,46 @@ public class PlayerAgency implements Serializable{
 	
 	@Column(name = "agency_union_code", unique=true)
 	private String agencyUnionCode;
+
+	public Long getAgencyId() {
+		return agencyId;
+	}
+
+	public void setAgencyId(Long agencyId) {
+		this.agencyId = agencyId;
+	}
+
+	public String getAgencyName() {
+		return agencyName;
+	}
+
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public String getAgencyUnionCode() {
+		return agencyUnionCode;
+	}
+
+	public void setAgencyUnionCode(String agencyUnionCode) {
+		this.agencyUnionCode = agencyUnionCode;
+	}
 	
 	
 	

@@ -17,7 +17,7 @@ public class AdminRechargeController {
 	@Autowired
 	private AdminRechargeService adminRechargeService;
 
-	@PostMapping(name = "/admin/recharge/managerApi")
+	@PostMapping(value = "/admin/recharge/managerApi")
 	@ResponseBody
 	public ResponseEntity<BaseResponse> managerApi(@RequestBody BaseRequest<ManageApiRechargeReq> req) {
 		adminRechargeService.manageApiRecharge(req.getData().getRechargeId(), req.getData().getStatus());

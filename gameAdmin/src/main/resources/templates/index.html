@@ -10,9 +10,9 @@
         <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 		<title>66Game后台管理系统</title>
 		<link href="/css/index.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/popup.js"></script>
-		<script type="text/javascript" src="js/user/index.js"></script>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/popup.js"></script>
+		<script type="text/javascript" src="/js/user/index.js"></script>
 	</head>
 	
 	<body class="index_body">
@@ -25,22 +25,30 @@
 				<div class="leftsidebar_box">
 					<span class="left_active"></span>
 					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGE','ROLE_INFO_ADD')" class="system_log">
-						<dt>信息发布<img src="images/left_down_ico.png"/></dt>
-						<dd ><a href="#" data="/releaseSlide">轮播图发布</a></dd>
-						<dd ><a href="#" data="/releaseInfos">图文信息发布</a></dd>
-						<dd ><a href="#" data="/releaseProducts">产品发布</a></dd>
+						<dt>数据操作<img src="images/left_down_ico.png"/></dt>
+						<dd ><a href="#" data="/admin/agency/init">游戏代理</a></dd>
+						<dd ><a href="#" data="/releaseInfos">客户充值</a></dd>
+						<dd ><a href="#" data="/releaseProducts">客户出金</a></dd>
 					</dl>
 					<span class="left_active"></span>
 					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGE','ROLE_CUSTOMER')" class="system_log">
-						<dt>客户管理<img src="images/left_down_ico.png"/></dt>
-						<dd ><a href="#" data="/customerManage">客户管理</a></dd>
-						<dd ><a href="#" data="/customerRole">客户角色</a></dd>
-						<dd ><a href="#" data="/customerPermission">客户资源</a></dd>
+						<dt>玩家监控<img src="images/left_down_ico.png"/></dt>
+						<dd ><a href="#" data="/customerManage">游戏内存监控</a></dd>
+						<dd ><a href="#" data="/customerRole">游戏玩家信息</a></dd>
+						<dd ><a href="#" data="/customerPermission">开始最小值设置</a></dd>
+						
+					</dl>
+					<span class="left_active"></span>
+					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGE','ROLE_CUSTOMER')" class="system_log">
+						<dt>代理结算<img src="images/left_down_ico.png"/></dt>
+						<dd ><a href="#" data="/customerManage">游戏内存监控</a></dd>
+						<dd ><a href="#" data="/customerRole">游戏玩家信息</a></dd>
+						<dd ><a href="#" data="/customerPermission">开始最小值设置</a></dd>
 						
 					</dl>
 					<span class="left_active"></span>
 					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGE')" class="statistics">
-						<dt>系统维护<img src="images/left_down_ico.png" /></dt>
+						<dt>系统功能<img src="images/left_down_ico.png" /></dt>
 						<dd><a href="#" data="/roleManage">角色管理</a></dd>
 						<dd><a href="#" data="/usersManage">用户管理</a></dd>
 						<dd><a href="#" data="/usersAuthority">权限管理</a></dd>
@@ -51,7 +59,7 @@
 			<!-- Top Bar Begin -->
 			<div id="top_bar">
 				<div class="top_title">
-					<p>66Game信息平台后台管理系统</p>
+					<p>66Game后台管理系统</p>
 				</div>
 				<div class="right_tools">
 					<a class="manage_role"><span sec:authentication="name">系统管理员</span></a>
@@ -70,7 +78,7 @@
 						<a class="tabs">欢迎页</a>
 					</div>
 					<div class="content_detail">
-						<h1 class="welcome">欢迎您来到66Game信息平台后台管理系统</h1>
+						<h1 class="welcome">欢迎您来到66Game后台管理系统</h1>
 					</div>
 				</div>
 				

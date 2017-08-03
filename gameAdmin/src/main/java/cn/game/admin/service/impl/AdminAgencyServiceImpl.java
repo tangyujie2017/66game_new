@@ -1,4 +1,7 @@
 package cn.game.admin.service.impl;
+
+import java.util.List;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +24,24 @@ public class AdminAgencyServiceImpl implements AdminAgencyService {
 	}
 
 	@Override
-	public Page<PlayerAgency> loadPlayerAgencyList(Groups g,int pageSize,int currentPage) {
-		
+	public Page<PlayerAgency> loadPlayerAgencyList(Groups g, int pageSize, int currentPage) {
+
 		Page<PlayerAgency> page = new Page<PlayerAgency>(pageSize, currentPage);
 
 		return playerAgencyRepository.findEntityPageByGroups(g, page);
+	}
+
+	@Override
+	public boolean checkAgencyName(String agencyName) {
+		Groups g = new Groups();
+		g.Add("agencyName", agencyName);
+		List<PlayerAgency> list = playerAgencyRepository.findEntityByGroups(g);
+		if (list != null && list.size() > 1) {
+			return false;
+		} else {
+			return true;
+		}
+
 	}
 
 }

@@ -1,6 +1,6 @@
 $(function() {
-	//search();
-	// 图片本地预览
+	search();
+	
 	$("#add_agency").click(function() {
 		checkSn();
 	});
@@ -62,7 +62,7 @@ function addAgency() {
 
 			if (data.status=10200) {
 				
-				//search();
+				search();
 			}
 
 		}
@@ -73,7 +73,7 @@ function addAgency() {
 function search() {
 
 	$('#pager').sjAjaxPager({
-		url : "/slide/list",
+		url : "/admin/agency/list",
 		pageSize : 10,
 		searchParam : {
 			/*

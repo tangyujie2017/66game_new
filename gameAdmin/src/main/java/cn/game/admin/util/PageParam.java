@@ -1,9 +1,9 @@
 package cn.game.admin.util;
 
-public class PageParam {
+public class PageParam <T>{
 	private int pageSize=10;
 	private int pageIndex=1;
-	private String searchParam="";
+	private T search;
 
 	public int getPageSize() {
 		return pageSize;
@@ -21,12 +21,14 @@ public class PageParam {
 		this.pageIndex = pageIndex;
 	}
 
-	public String getSearchParam() {
-		return searchParam;
+	public T getSearch() {
+		return search;
 	}
 
-	public void setSearchParam(String searchParam) {
-		this.searchParam = searchParam;
+	public void setSearch(T search) {
+		this.search = search;
 	}
+
+	
 
 }

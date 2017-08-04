@@ -5,23 +5,23 @@ import java.io.Serializable;
 public class LoadPlayerAgencyListReq implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int pageSize = 10;
-	private int pageIndex = 1;
+	private String agencyName;
+	private String agencyCode;
 
-	public int getPageSize() {
-		return pageSize;
+	public String getAgencyName() {
+		return agencyName;
 	}
 
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
 	}
 
-	public int getPageIndex() {
-		return pageIndex;
+	public String getAgencyCode() {
+		return agencyCode;
 	}
 
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
+	public void setAgencyCode(String agencyCode) {
+		this.agencyCode = agencyCode;
 	}
 
 }

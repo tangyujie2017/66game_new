@@ -16,6 +16,8 @@ import cn.game.core.entity.table.wallet.PlayerRecharge;
 import cn.game.core.repository.play.PlayerAccountRepository;
 import cn.game.core.repository.play.PlayerRepository;
 import cn.game.core.repository.wallet.PlayerRechargeRepository;
+import cn.game.core.tools.Groups;
+import cn.game.core.tools.Page;
 
 @Service
 public class AdminRechargeServiceImpl implements AdminRechargeService {
@@ -70,9 +72,11 @@ public class AdminRechargeServiceImpl implements AdminRechargeService {
 	}
 
 	@Override
-	public List<PlayerRecharge> loadPlayerRechargeList() {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<PlayerRecharge> loadPlayerRechargeList(Groups g, int pageSize, int currentPage) {
+
+		Page<PlayerRecharge> page = new Page<>(pageSize, currentPage);
+
+		return playerRechargeRepository.findEntityPageByGroups(g, page);
 	}
 
 }

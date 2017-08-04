@@ -1,13 +1,13 @@
 package cn.game.admin.service;
 
-import java.util.List;
-
 import cn.game.core.entity.table.wallet.PlayerRecharge;
+import cn.game.core.tools.Groups;
+import cn.game.core.tools.Page;
 
 public interface AdminRechargeService {
-	public void manageApiRecharge(Long rechargeId,Integer status);
+	public void manageApiRecharge(Long rechargeId, Integer status);
 
-	public void manageAdminRecharge(PlayerRecharge recharge,String userPlatformId);
+	public void manageAdminRecharge(PlayerRecharge recharge, String userPlatformId);
 
-	public List<PlayerRecharge> loadPlayerRechargeList();
+	Page<PlayerRecharge> loadPlayerRechargeList(Groups g, int pageSize, int currentPage);
 }

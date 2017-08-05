@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.game.admin.controller.http.req.BaseRequest;
 import cn.game.admin.controller.http.req.agency.CheckPlayerAgencyReq;
-import cn.game.admin.controller.http.req.agency.LoadPlayerAgencyListReq;
+import cn.game.admin.controller.http.req.agency.PageParamLoadPlayerAgencyListReq;
 import cn.game.admin.controller.http.req.agency.SaveAgencyReq;
 import cn.game.admin.controller.http.resp.BaseResponse;
 import cn.game.admin.service.AdminAgencyService;
 import cn.game.admin.util.GameAdminUtils;
-import cn.game.admin.util.PageParam;
 import cn.game.admin.util.PageVo;
+import cn.game.admin.util.PlayerAgencyVo;
 import cn.game.core.entity.table.play.PlayerAgency;
 import cn.game.core.tools.Groups;
 import cn.game.core.tools.Page;
@@ -42,29 +42,39 @@ public class AdminAgencyController {
 		adminAgencyService.saveAgency(agency);
 		return BaseResponse.success("");
 	}
+	
+	@RequestMapping(value = "/admin/agency/del")
+	@ResponseBody
+	public ResponseEntity<BaseResponse> delAgency( Long id) {
+		if(id==null){
+			return BaseResponse.systemError("参数错误");
+		}
+		adminAgencyService.delAgency(id);
+		return BaseResponse.success("");
+	}
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/admin/agency/list")
 	@ResponseBody
-	public PageVo<PlayerAgency> loadPlayerAgencyList(@Valid PageParam<LoadPlayerAgencyListReq> param,
+	public PageVo<PlayerAgencyVo> loadPlayerAgencyList(@Valid PageParamLoadPlayerAgencyListReq param,
 			BindingResult result) {
 
 		int pageSize = param.getPageSize();
 		int currentPage = param.getPageIndex();
 		Groups g = new Groups();
-		if (param.getSearch() != null) {
-			// 有查询条件
-			LoadPlayerAgencyListReq req = param.getSearch();
-			if (req.getAgencyName() != null && !"".equals(req.getAgencyName())) {
-				g.Add("agencyName", req.getAgencyName());
-			}
-			if (req.getAgencyCode() != null && !"".equals(req.getAgencyCode())) {
-				g.Add("agencyUnionCode", req.getAgencyCode());
-			}
+
+		// 有查询条件
+
+		if (param.getAgencyName() != null && !"".equals(param.getAgencyName())) {
+			g.Add("agencyName", param.getAgencyName());
 		}
-		Page<PlayerAgency> page=adminAgencyService.loadPlayerAgencyList(g, pageSize, currentPage);
-		PageVo<PlayerAgency> pageVo=new PageVo<PlayerAgency>();
-		pageVo.setItems(page.getItems());
+		if (param.getAgencyCode() != null && !"".equals(param.getAgencyCode())) {
+			g.Add("agencyUnionCode", param.getAgencyCode());
+		}
+
+		Page<PlayerAgency> page = adminAgencyService.loadPlayerAgencyList(g, pageSize, currentPage);
+		PageVo<PlayerAgencyVo> pageVo = new PageVo<PlayerAgencyVo>();
+		pageVo.setItems(PlayerAgencyVo.covertListVo(page.getItems()));
 		pageVo.setTotal(page.getTotalCount());
 		return pageVo;
 	}

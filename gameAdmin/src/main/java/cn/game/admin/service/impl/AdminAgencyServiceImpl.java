@@ -44,4 +44,11 @@ public class AdminAgencyServiceImpl implements AdminAgencyService {
 
 	}
 
+	@Override
+	@Transactional
+	public void delAgency(Long id) {
+		playerAgencyRepository.delete(id);
+
+	}
+
 }

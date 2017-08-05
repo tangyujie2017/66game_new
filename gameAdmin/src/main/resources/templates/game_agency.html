@@ -19,16 +19,16 @@
 	<body>
 		<div class="tab_lists">
 			<div class="tab_names">
-				<a class="tabs">轮播图信息</a>
+				<a class="tabs">代理信息</a>
 			</div>
 			<div class="content_detail goods_lists">
 				<div class="goods_search vip_sets">
 				
 					<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','PUBLISH_ADD')" class="role_add"><img src="/images/add_ico.png" />新增代理</a>
 					<div class="">
-					<input placeholder="名字"/>
-					<input placeholder="编号"/>
-					<input type="button"  value="搜索"/>
+					<input placeholder="名字" id="agencyName"/>
+					<input placeholder="编号" id="agencyCode"/>
+					<input type="button"  onclick="search()" value="搜索"/>
 					</div>
 				</div>
 				<!-- table lists -->
@@ -36,7 +36,7 @@
 					<table class="goods_table">
 						<thead>
 							<tr>
-								<td>序号</td><td>代理名字</td><td>代理唯一编号</td><td>创建时间</td><td  class="role_ope_td">操作</td>
+								<td>序号</td><td>代理名字</td><td>编号</td><td>创建时间</td><td  class="role_ope_td">操作</td>
 							</tr>
 						</thead>
 						<tbody  id="slide_data">
@@ -62,8 +62,8 @@
 							<td class="lable_td">代理名字：</td>
 							
 							<td> 
-							<input type="hidden"  id="slideid" value=""/>
-							<input class="w200h28" type="text" id="agencyName" value="" />
+							
+							<input class="w200h28" type="text" id="a_name" value="" />
 							</td>
 						</tr>
 						

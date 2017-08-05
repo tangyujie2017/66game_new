@@ -10,4 +10,6 @@ public interface AdminAgencyService {
  public void saveAgency(PlayerAgency agency) ;
  public Page<PlayerAgency> loadPlayerAgencyList(Groups g,int pageSize,int currentPage);
  public boolean checkAgencyName(String agencyName);
+ 
+ public void delAgency(Long id);
 }

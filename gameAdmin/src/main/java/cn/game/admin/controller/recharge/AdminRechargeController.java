@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.game.admin.controller.http.req.BaseRequest;
-import cn.game.admin.controller.http.req.agency.LoadPlayerAgencyListReq;
-import cn.game.admin.controller.http.req.recharge.LoadPlayerRechargeListReq;
+import cn.game.admin.controller.http.req.recharge.PageParamLoadPlayerRechargeListReq;
 import cn.game.admin.controller.http.req.recharge.ManageAdminRechargeReq;
 import cn.game.admin.controller.http.req.recharge.ManageApiRechargeReq;
 import cn.game.admin.controller.http.resp.BaseResponse;
 import cn.game.admin.service.AdminRechargeService;
-import cn.game.admin.util.PageParam;
 import cn.game.admin.util.PageVo;
-import cn.game.core.entity.table.play.PlayerAgency;
 import cn.game.core.entity.table.wallet.PlayerRecharge;
 import cn.game.core.tools.Groups;
 import cn.game.core.tools.Page;
@@ -52,22 +49,21 @@ public class AdminRechargeController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/admin/recharge/list")
 	@ResponseBody
-	public PageVo<PlayerRecharge> loadRechargeList(@Valid PageParam<LoadPlayerRechargeListReq> param,
+	public PageVo<PlayerRecharge> loadRechargeList(@Valid PageParamLoadPlayerRechargeListReq param,
 			BindingResult result) {
 
 		int pageSize = param.getPageSize();
 		int currentPage = param.getPageIndex();
 		Groups g = new Groups();
-		if (param.getSearch() != null) {
-			// 有查询条件
-			LoadPlayerRechargeListReq req = param.getSearch();
-			// if (req.getAgencyName() != null && !"".equals(req.getAgencyName())) {
-			// g.Add("agencyName", req.getAgencyName());
-			// }
-			// if (req.getAgencyCode() != null && !"".equals(req.getAgencyCode())) {
-			// g.Add("agencyUnionCode", req.getAgencyCode());
-			// }
-		}
+
+		// 有查询条件
+		// if (req.getAgencyName() != null && !"".equals(req.getAgencyName())) {
+		// g.Add("agencyName", req.getAgencyName());
+		// }
+		// if (req.getAgencyCode() != null && !"".equals(req.getAgencyCode())) {
+		// g.Add("agencyUnionCode", req.getAgencyCode());
+		// }
+	
 		Page<PlayerRecharge> page = adminRechargeService.loadPlayerRechargeList(g, pageSize, currentPage);
 		PageVo<PlayerRecharge> pageVo = new PageVo<PlayerRecharge>();
 		pageVo.setItems(page.getItems());

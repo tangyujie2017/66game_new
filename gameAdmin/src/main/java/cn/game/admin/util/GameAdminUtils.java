@@ -95,5 +95,9 @@ public class GameAdminUtils {
 		}
 		return listT;
 	}
-
+	public static String dateToStr(Date dateDate) {
+		   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		   String dateString = formatter.format(dateDate);
+		   return dateString;
+		}
 }

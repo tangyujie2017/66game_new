@@ -89,6 +89,7 @@ public class AdminRechargeController {
 		// }
 		g.Add("rechargeSource", 1);
 		g.Add("operateType", 1);
+		g.setOrderby("createDate");
 		Page<PlayerRecharge> page = adminRechargeService.loadPlayerRechargeList(g, pageSize, currentPage);
 		PageVo<PlayerRechargeVo> pageVo = new PageVo<PlayerRechargeVo>();
 
@@ -116,6 +117,7 @@ public class AdminRechargeController {
 		// }
 		g.Add("rechargeSource", 2);
 		g.Add("operateType", 2);
+		g.setOrderby("createDate");
 		Page<PlayerRecharge> page = adminRechargeService.loadPlayerRechargeList(g, pageSize, currentPage);
 		PageVo<PlayerRechargeVo> pageVo = new PageVo<PlayerRechargeVo>();
 

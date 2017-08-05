@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.game.admin.controller.http.req.BaseRequest;
 import cn.game.admin.controller.http.req.recharge.PageParamLoadAppPlayerRechargeListReq;
+import cn.game.admin.controller.http.req.recharge.CheckUserPlatformIdReq;
 import cn.game.admin.controller.http.req.recharge.ManageAdminRechargeReq;
 import cn.game.admin.controller.http.req.recharge.ManageApiRechargeReq;
+import cn.game.admin.controller.http.req.recharge.PageParamLoadAdminPlayerRechargeListReq;
 import cn.game.admin.controller.http.resp.BaseResponse;
 import cn.game.admin.service.AdminRechargeService;
 import cn.game.admin.util.PageVo;
 import cn.game.admin.util.PlayerRechargeVo;
+import cn.game.admin.util.PlayerVo;
+import cn.game.core.entity.table.play.Player;
 import cn.game.core.entity.table.wallet.PlayerRecharge;
 import cn.game.core.tools.Groups;
 import cn.game.core.tools.Page;
@@ -39,7 +43,21 @@ public class AdminRechargeController {
 		return BaseResponse.success("充值成功");
 	}
 
-	@PostMapping(value = "/admin/recharge/managerAdmin")
+	@PostMapping(value = "/admin/recharge/admin/check")
+	@ResponseBody
+	public ResponseEntity<BaseResponse> checkUserPlatformId(@Valid @RequestBody BaseRequest<CheckUserPlatformIdReq> req,
+			BindingResult result) {
+
+		Player player = adminRechargeService.loadPlayerByUserPlatformId(req.getData().getUserPlatformId());
+		if (player != null) {
+			return BaseResponse.success(PlayerVo.playerToVo(player));
+		} else {
+			return BaseResponse.systemError("没有找到玩家");
+		}
+
+	}
+
+	@PostMapping(value = "/admin/recharge/admin/manager")
 	@ResponseBody
 	public ResponseEntity<BaseResponse> managerAdmin(@Valid @RequestBody BaseRequest<ManageAdminRechargeReq> req,
 			BindingResult result) {
@@ -60,13 +78,15 @@ public class AdminRechargeController {
 		int currentPage = param.getPageIndex();
 		Groups g = new Groups();
 
-		 //有查询条件
-//		 if (param.getWxNickname() != null && !"".equals(param.getWxNickname())) {
-//		  g.Add("player.wxNickname", param.getWxNickname());
-//		 }
-//		 if (param.getUserPlatformId() != null && !"".equals(param.getUserPlatformId())) {
-//		 g.Add("player.userPlatformId", param.getUserPlatformId());
-//		 }
+		// 有查询条件
+		// if (param.getWxNickname() != null &&
+		// !"".equals(param.getWxNickname())) {
+		// g.Add("player.wxNickname", param.getWxNickname());
+		// }
+		// if (param.getUserPlatformId() != null &&
+		// !"".equals(param.getUserPlatformId())) {
+		// g.Add("player.userPlatformId", param.getUserPlatformId());
+		// }
 		g.Add("rechargeSource", 1);
 		g.Add("operateType", 1);
 		Page<PlayerRecharge> page = adminRechargeService.loadPlayerRechargeList(g, pageSize, currentPage);
@@ -80,7 +100,7 @@ public class AdminRechargeController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/admin/recharge/admin/list")
 	@ResponseBody
-	public PageVo<PlayerRechargeVo> loadAdminRechargeList(@Valid PageParamLoadAppPlayerRechargeListReq param,
+	public PageVo<PlayerRechargeVo> loadAdminRechargeList(@Valid PageParamLoadAdminPlayerRechargeListReq param,
 			BindingResult result) {
 
 		int pageSize = param.getPageSize();
@@ -95,6 +115,7 @@ public class AdminRechargeController {
 		// g.Add("agencyUnionCode", req.getAgencyCode());
 		// }
 		g.Add("rechargeSource", 2);
+		g.Add("operateType", 2);
 		Page<PlayerRecharge> page = adminRechargeService.loadPlayerRechargeList(g, pageSize, currentPage);
 		PageVo<PlayerRechargeVo> pageVo = new PageVo<PlayerRechargeVo>();
 
@@ -119,7 +140,7 @@ public class AdminRechargeController {
 			return "redirect:/login";
 		}
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		return "game_app_recharge";
+		return "game_admin_reharge";
 
 	}
 }

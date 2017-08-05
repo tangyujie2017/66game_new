@@ -66,6 +66,7 @@ public class AdminRechargeServiceImpl implements AdminRechargeService {
 			recharge.setCreateDate(new Date());
 			recharge.setPlayer(player);
 			recharge.setOperateType(2);
+			recharge.setRechargeSource(2);
 			PlayerAccount account = player.getAccout();
 			account.setTotalGold(recharge.getRechargeScore() + account.getTotalGold());
 			account.setHistoryPayRecord((account.getHistoryPayRecord() == null ? 0 : account.getHistoryPayRecord())
@@ -76,6 +77,11 @@ public class AdminRechargeServiceImpl implements AdminRechargeService {
 			throw new BizException("没有找到玩家");
 		}
 
+	}
+	
+	public Player loadPlayerByUserPlatformId(String userPlatformId){
+		Player player = playerRepository.findUniqueBy("userPlatformId", userPlatformId);
+		return player;
 	}
 
 	@Override

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head lang="en">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+		<title>168后台管理系统</title>
+		<link href="/css/index.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/popup.js"></script>
+		<script type="text/javascript" src="/js/util/jquery-ajax-pager.js"></script>
+		<script type="text/javascript" src="/js/util/js-extend.js"></script>
+		 <script type="text/javascript" src="/js/user/appRecharge.js"></script>
+	</head>
+	<body>
+		<div class="tab_lists">
+			<div class="tab_names">
+				<a class="tabs">app充值</a>
+			</div>
+			<div class="content_detail goods_lists">
+				<div class="goods_search vip_sets">
+				
+					
+					<div class="">
+					<input placeholder="玩家编号" id="userPlatformId"/>
+					<input placeholder="玩家昵称" id="wxNickname"/>
+					
+					<input type="button"  onclick="search()" value="搜索"/>
+					</div>
+				</div>
+				<!-- table lists -->
+				<form action="post">
+					<table class="goods_table">
+						<thead>
+							<tr>
+								<td>序号</td><td>玩家编号</td><td>玩家昵称</td><td>充值来源</td><td>充值金额</td><td>充值积分</td><td>处理状态</td><td>创建时间</td><td  class="role_ope_td">操作</td>
+							</tr>
+						</thead>
+						<tbody  id="slide_data">
+							
+						</tbody>
+					</table>
+					<div   id="pager">
+                      
+                    </div>
+					
+				</form>
+			</div>
+		</div>
+	
+		<!-- 修改轮播图 -->
+	
+		<!-- 删除消息提示 -->
+		
+		<script type="text/javascript">
+			$(function(){
+				$(".page_num:first").css({"color":"#da251c","border":"1px solid #da251c"});
+				$(".page_num").click(function(){
+					$(this).siblings("a").css({"color":"#666","border":"1px solid #ddd"});
+					$(this).css({"color":"#da251c","border":"1px solid #da251c"});
+				});
+				//全选/全不选
+	           	$("#checkAll").click(function() {
+	                $('input[name="checked_box"]').attr("checked",this.checked); 
+	            });
+	            var subBox = $("input[name='checked_box']");
+	            subBox.click(function(){
+	                $("#checkAll").attr("checked",subBox.length == $("input[name='checked_box']:checked").length ? true : false);
+	            });
+	            
+	          
+	            
+	            
+			});
+		</script>
+		
+	</body>
+</html>

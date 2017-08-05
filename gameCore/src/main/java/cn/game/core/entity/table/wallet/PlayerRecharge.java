@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import cn.game.core.entity.table.play.Player;
 
 //用户充值相关
-@Entity(name = "player_recharge")
+@Entity
 public class PlayerRecharge implements Serializable{
 
 	/**
@@ -37,7 +37,7 @@ public class PlayerRecharge implements Serializable{
 	@Column
 	private Long rechargeScore;
 	//充值来源
-	@Column
+	@Column(name="recharge_source")
 	private Integer rechargeSource;//1：api手机端，2后台管理充值 3其他
 	//处理类型
 	@Column

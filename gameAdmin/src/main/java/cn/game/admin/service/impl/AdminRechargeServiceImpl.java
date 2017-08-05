@@ -34,18 +34,25 @@ public class AdminRechargeServiceImpl implements AdminRechargeService {
 	public synchronized void manageApiRecharge(Long rechargeId, Integer status) {
 		PlayerRecharge recharge = playerRechargeRepository.find(rechargeId);
 		if (recharge.getOperateType().equals(1)) {
-			PlayerAccount account = recharge.getPlayer().getAccout();
-			if (recharge.getRechargeSource().equals(1)) {
-				account.setTotalGold(account.getTotalGold() + recharge.getRechargeScore());
-				account.setHistoryPayRecord((account.getHistoryPayRecord() == null ? 0 : account.getHistoryPayRecord())
-						+ recharge.getRechargeScore());
-				playerAccountRepository.update(account);
-				recharge.setOperateType(status);//
-				playerRechargeRepository.update(recharge);
-			} else {
-				throw new BizException("此数据非手机客户端数据不能处理");
+			if(status==2){
+				//充值操作
+				PlayerAccount account = recharge.getPlayer().getAccout();
+				if (recharge.getRechargeSource().equals(1)) {
+					account.setTotalGold(account.getTotalGold() + recharge.getRechargeScore());
+					account.setHistoryPayRecord((account.getHistoryPayRecord() == null ? 0 : account.getHistoryPayRecord())
+							+ recharge.getRechargeScore());
+					playerAccountRepository.update(account);
+					recharge.setOperateType(status);//
+					playerRechargeRepository.update(recharge);
+				} else {
+					throw new BizException("此数据非手机客户端数据不能处理");
 
+				}
+			}else{
+				//失效或过期操作
+				recharge.setOperateType(status);
 			}
+			
 		} else {
 			throw new BizException("该数据已经处理");
 		}

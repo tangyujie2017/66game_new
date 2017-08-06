@@ -22,15 +22,6 @@ public class MainController {
 		return "index";
 
 	}
-	@RequestMapping(value = "/admin/agency/init")
-	public String playerAgencypInit(Principal principal, HttpServletResponse response) {
-		if (principal == null) {
-			return "redirect:/login";
-		}
-		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		return "game_agency";
-
 	
-	}
 
 }

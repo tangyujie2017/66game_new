@@ -1,6 +1,7 @@
 package cn.game.core.entity.table.wallet;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +30,10 @@ public class PlayerGiveScore implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "receive_user_id")
 	private Player receiver;
+	
+	@Column
+	private Date crateTime;
+	
 	@Column
 	private Long score;
 	@Column
@@ -62,6 +67,12 @@ public class PlayerGiveScore implements Serializable{
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public Date getCrateTime() {
+		return crateTime;
+	}
+	public void setCrateTime(Date crateTime) {
+		this.crateTime = crateTime;
 	}
 	
 

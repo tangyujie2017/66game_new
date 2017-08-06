@@ -39,6 +39,9 @@ public class AdminRechargeController {
 	@ResponseBody
 	public ResponseEntity<BaseResponse> managerApi(@RequestBody BaseRequest<ManageApiRechargeReq> req,
 			BindingResult result) {
+		if (result.hasErrors()) {
+			return BaseResponse.systemError("请求参数错误");
+		}
 		adminRechargeService.manageApiRecharge(req.getData().getRechargeId(), req.getData().getStatus());
 		return BaseResponse.success("充值成功");
 	}
@@ -47,7 +50,9 @@ public class AdminRechargeController {
 	@ResponseBody
 	public ResponseEntity<BaseResponse> checkUserPlatformId(@Valid @RequestBody BaseRequest<CheckUserPlatformIdReq> req,
 			BindingResult result) {
-
+		if (result.hasErrors()) {
+			return BaseResponse.systemError("请求参数错误");
+		}
 		Player player = adminRechargeService.loadPlayerByUserPlatformId(req.getData().getUserPlatformId());
 		if (player != null) {
 			return BaseResponse.success(PlayerVo.playerToVo(player));
@@ -61,6 +66,9 @@ public class AdminRechargeController {
 	@ResponseBody
 	public ResponseEntity<BaseResponse> managerAdmin(@Valid @RequestBody BaseRequest<ManageAdminRechargeReq> req,
 			BindingResult result) {
+		if (result.hasErrors()) {
+			return BaseResponse.systemError("请求参数错误");
+		}
 		PlayerRecharge rechage = new PlayerRecharge();
 		rechage.setRechargeAmount(req.getData().getRechargeAmount());
 		rechage.setRechargeScore(req.getData().getRechargeScore());
@@ -73,7 +81,9 @@ public class AdminRechargeController {
 	@ResponseBody
 	public PageVo<PlayerRechargeVo> loadAppRechargeList(@Valid PageParamLoadAppPlayerRechargeListReq param,
 			BindingResult result) {
-
+		if (result.hasErrors()) {
+			return null;
+		}
 		int pageSize = param.getPageSize();
 		int currentPage = param.getPageIndex();
 		Groups g = new Groups();
@@ -103,7 +113,9 @@ public class AdminRechargeController {
 	@ResponseBody
 	public PageVo<PlayerRechargeVo> loadAdminRechargeList(@Valid PageParamLoadAdminPlayerRechargeListReq param,
 			BindingResult result) {
-
+		if (result.hasErrors()) {
+			return null;
+		}
 		int pageSize = param.getPageSize();
 		int currentPage = param.getPageIndex();
 		Groups g = new Groups();

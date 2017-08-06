@@ -52,8 +52,6 @@ public class GameLogicCenterServiceImpl implements GameLogicCenterService {
 	@Autowired
 	private PlayerGameResultRepository playerGameResultRepository;
 
-
-
 	private void initBatch(String batch) {
 		// 初始化批次号
 		System.out.println("初始化批次号_从缓存中拿到的批次为" + batch);
@@ -144,6 +142,9 @@ public class GameLogicCenterServiceImpl implements GameLogicCenterService {
 
 			throw new BizException("提交参数有异常,请检查后再提交");
 		}
+		String current_playerNumber =  redisRepository.getString("current_playerNumber");
+		Integer playerNumber=Integer.valueOf(current_playerNumber)+1;
+		redisRepository.saveObject("current_playerNumber", playerNumber.toString());
 		return current_batch;
 	}
 
@@ -712,10 +713,10 @@ public class GameLogicCenterServiceImpl implements GameLogicCenterService {
 		PlayerGameResult result = playerGameResultRepository.findUniqueBy("batchNum", currentBatch);
 		// 说明已经开奖
 		if (result != null) {
-			
+
 			GameResultResp resp = new GameResultResp();
-			    //开奖信息
-			GameResultVo gameResultVo=new GameResultVo();
+			// 开奖信息
+			GameResultVo gameResultVo = new GameResultVo();
 			gameResultVo.setAninalId(result.getAnimal().getId());
 			gameResultVo.setBatchNum(result.getBatchNum());
 			gameResultVo.setId(result.getId());

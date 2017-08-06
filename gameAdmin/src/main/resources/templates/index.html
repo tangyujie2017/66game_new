@@ -26,25 +26,24 @@
 					<span class="left_active"></span>
 					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGE','ROLE_INFO_ADD')" class="system_log">
 						<dt>数据操作<img src="images/left_down_ico.png"/></dt>
-						<dd ><a href="#" data="/admin/agency/init">游戏代理</a></dd>
+						<dd ><a href="#" data="/admin/agency/index">游戏代理</a></dd>
 						<dd ><a href="#" data="/admin/recharge/app/index">app充值</a></dd>
 						<dd ><a href="#" data="/admin/recharge/admin/index">后台充值</a></dd>
-						<dd ><a href="#" data="/releaseProducts">客户出金</a></dd>
+						<dd ><a href="#" data="/admin/withdraw/index">客户出金</a></dd>
 					</dl>
 					<span class="left_active"></span>
 					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGE','ROLE_CUSTOMER')" class="system_log">
 						<dt>玩家监控<img src="images/left_down_ico.png"/></dt>
-						<dd ><a href="#" data="/customerManage">游戏内存监控</a></dd>
-						<dd ><a href="#" data="/customerRole">游戏玩家信息</a></dd>
-						<dd ><a href="#" data="/customerPermission">开始最小值设置</a></dd>
+						<dd ><a href="#" data="/admin/game/index">游戏内存监控</a></dd>
+						<!-- <dd ><a href="#" data="/customerRole">游戏玩家信息</a></dd> -->
+						<dd ><a href="#" data="/admin/game/minPlayerNum/index">开始最小值设置</a></dd>
 						
 					</dl>
 					<span class="left_active"></span>
 					<dl sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGE','ROLE_CUSTOMER')" class="system_log">
 						<dt>代理结算<img src="images/left_down_ico.png"/></dt>
-						<dd ><a href="#" data="/customerManage">游戏内存监控</a></dd>
-						<dd ><a href="#" data="/customerRole">游戏玩家信息</a></dd>
-						<dd ><a href="#" data="/customerPermission">开始最小值设置</a></dd>
+						<dd ><a href="#" data="/admin/game/index">代理结算</a></dd>
+						
 						
 					</dl>
 					<span class="left_active"></span>

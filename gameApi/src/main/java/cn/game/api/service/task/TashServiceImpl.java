@@ -15,6 +15,8 @@ import cn.game.api.config.Config.Values;
 import cn.game.api.service.arithmetic.Animal;
 import cn.game.api.service.arithmetic.AnimalConstant;
 import cn.game.api.service.logic.GameLogicCenterService;
+import cn.game.core.entity.table.game.Game;
+import cn.game.core.repository.game.GameRepository;
 import cn.game.core.repository.play.PlayerRepository;
 import cn.game.core.repository.redis.RedisRepository;
 import cn.game.core.tools.Groups;
@@ -27,13 +29,25 @@ public class TashServiceImpl implements TaskService {
 	private GameLogicCenterService gameLogicCenterService;
 	@Resource
 	private PlayerRepository playerRepository;
+	@Resource
+	private GameRepository gameRepository;
     @Autowired
     private  Values values;
 	@Scheduled(fixedRate = 5000)
 	private void generateBatchNo() {
 		String current_batch = redisRepository.getString("current_batch");
 		Map<String, Map<Long, List<Animal>>> container = AnimalConstant.Data_Container;
-		if(container.get(current_batch)!=null&&container.get(current_batch).keySet().size()>=values.getGameStartNumber()){
+		
+		Integer minNum=1;
+		Game game=gameRepository.find(1l);
+		if(game!=null){
+			minNum=game.getPlayerNum();
+		}else{
+			minNum=values.getGameStartNumber();
+		}
+		
+		
+		if(container.get(current_batch)!=null&&container.get(current_batch).keySet().size()>=minNum){
 			// 执行上一次的结果
 			if (current_batch != null && !current_batch.equals("")) {
 				gameLogicCenterService.matcher(current_batch);
@@ -56,6 +70,8 @@ public class TashServiceImpl implements TaskService {
 	}
 
 	private String createBatch() {
+		//每次创建把current_playerNumber值赋值为0
+		redisRepository.saveString("current_playerNumber", "0");
 		Date currentTime = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 		String dateString = formatter.format(currentTime);

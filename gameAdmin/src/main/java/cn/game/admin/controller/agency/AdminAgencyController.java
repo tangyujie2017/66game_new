@@ -1,7 +1,9 @@
 package cn.game.admin.controller.agency;
 
+import java.security.Principal;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,5 +87,14 @@ public class AdminAgencyController {
 
 		return BaseResponse.success(adminAgencyService.checkAgencyName(req.getData().getAgencyName()));
 	}
+	@RequestMapping(value = "/admin/agency/index")
+	public String playerAgencypIndex(Principal principal, HttpServletResponse response) {
+		if (principal == null) {
+			return "redirect:/login";
+		}
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		return "game_agency";
 
+	
+	}
 }

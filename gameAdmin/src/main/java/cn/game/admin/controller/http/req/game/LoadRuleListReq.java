@@ -1,6 +1,6 @@
-package cn.game.admin.controller.http.req.withdraw;
+package cn.game.admin.controller.http.req.game;
 
-public class LoadPlayerWithDrawListReq {
+public class LoadRuleListReq {
 	private int pageSize=10;
 	private int pageIndex=1;
 	public int getPageSize() {
@@ -15,5 +15,6 @@ public class LoadPlayerWithDrawListReq {
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
 	}
+	
 	
 }
